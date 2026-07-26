@@ -1,19 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/Addition"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginBottom="50dp"
+        android:text="Addition"
+        android:textColor="	#000033"
+        android:textSize="20sp"
+        android:padding="15dp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/Btnbg"
+        tools:layout_editor_absoluteX="165dp"
+        tools:layout_editor_absoluteY="191dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/Subtraction"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:text="Subtraction"
+        android:textColor="	#000033"
+        android:backgroundTint="@color/Btnbg"
+        android:textSize="20sp"
+        android:padding="15dp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="165dp"
+        tools:layout_editor_absoluteY="295dp" />
+
+    <Button
+        android:id="@+id/Division"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Division"
+        android:textSize="20sp"
+        android:textColor="	#000033"
+        android:backgroundTint="@color/Btnbg"
+        android:padding="15dp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="170dp"
+        tools:layout_editor_absoluteY="423dp" />
+</LinearLayout>
