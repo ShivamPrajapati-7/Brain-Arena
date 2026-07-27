@@ -1,127 +1,135 @@
-# 🚀 Brain Arena
+# 🧠 Brain Arena
 
-> Brain Arena is an Android math quiz game built with Kotlin. It features four arithmetic modes, random question generation, score tracking, lives system, and a clean, user-friendly interface to make learning mathematics fun.
+> A fast-paced Android math quiz game built with Kotlin to improve arithmetic skills through timed challenges.
 
-![GitHub stars](https://img.shields.io/github/stars/USERNAME/REPO?style=for-the-badge)
-![GitHub forks](https://img.shields.io/github/forks/USERNAME/REPO?style=for-the-badge)
-![License](https://img.shields.io/github/license/USERNAME/REPO?style=for-the-badge)
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Platform-Android-green?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Language-Kotlin-purple?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Min%20SDK-24-blue?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/License-MIT-orange?style=for-the-badge"/>
+</p>
 
 ---
 
-## 📖 About
+## 📖 Overview
 
-Describe your project here.
+**Brain Arena** is an educational Android game designed to make practicing mathematics fun and engaging. Players solve randomly generated arithmetic questions against the clock while managing a limited number of lives.
 
-- What problem does it solve?
-- Who is it for?
-- Why did you build it?
+The game helps improve:
+
+- 🧠 Mental calculation
+- ⚡ Speed
+- 🎯 Accuracy
+- 📚 Basic arithmetic skills
 
 ---
 
 ## ✨ Features
 
-- ✅ Feature 1
-- ✅ Feature 2
-- ✅ Feature 3
-- ✅ Responsive Design
-- ✅ Easy to Use
+- ➕ Addition Mode
+- ➖ Subtraction Mode
+- ✖️ Multiplication Mode
+- 🎲 Randomly Generated Questions
+- ⏱️ Countdown Timer
+- ❤️ Three Lives System
+- 🏆 Score Tracking
+- 📱 Clean & Minimal UI
+- ⚡ Fast and Responsive Gameplay
+
+---
+
+## 🎮 Gameplay
+
+1. Launch the application.
+2. Choose your preferred game mode.
+3. Solve the displayed mathematical question before the timer expires.
+4. Enter your answer and press **OK**.
+5. Press **Next** to continue to the next question.
+6. A wrong answer or running out of time costs one heart.
+7. The game ends when all **3 hearts** are lost.
+
 
 ---
 
 ## 🛠️ Tech Stack
 
-**Frontend**
-- HTML
-- CSS
-- JavaScript
-
-**Backend**
-- Node.js
-- Express.js
-
-**Database**
-- MySQL / MongoDB
-
-**Tools**
-- Git
-- GitHub
-- VS Code
+| Technology | Used |
+|------------|------|
+| Language | Kotlin |
+| IDE | Android Studio |
+| UI | XML |
+| Platform | Android |
+| Minimum SDK | API 24 |
+| Material Design | ✅ |
 
 ---
 
-## 📂 Project Structure
+## 📦 Dependencies
 
-```
-Project/
-│
-├── assets/
-├── css/
-├── js/
-├── images/
-├── index.html
-├── README.md
-└── LICENSE
+```gradle
+implementation(libs.androidx.activity.ktx)
+implementation(libs.androidx.appcompat)
+implementation(libs.androidx.constraintlayout)
+implementation(libs.androidx.core.ktx)
+implementation(libs.material)
+
+testImplementation(libs.junit)
+
+androidTestImplementation(libs.androidx.espresso.core)
+androidTestImplementation(libs.androidx.junit)
 ```
 
 ---
 
-## 📸 Screenshots
+## 📚 Android Components Used
 
-### Home Page
+- AppCompatActivity
+- Intent
+- AlertDialog
+- CountDownTimer
+- TextView
+- Button
+- EditText
+- Toast
+- ViewBinding
+- Material Components
 
-![Home](images/home.png)
 
-### Dashboard
-
-![Dashboard](images/dashboard.png)
 
 ---
 
-## ⚙️ Installation
+## 🚀 Installation
 
 Clone the repository
 
 ```bash
-git clone https://github.com/USERNAME/REPOSITORY.git
+git clone https://github.com/ShivamPrajapati-7/Brain-Arena.git
 ```
 
-Go to the project directory
+Open the project in **Android Studio**.
 
-```bash
-cd REPOSITORY
-```
+Sync Gradle.
 
-Install dependencies (if required)
+Run the application on an emulator or physical Android device.
 
-```bash
-npm install
-```
+OR 
 
-Run the project
-
-```bash
-npm start
-```
-
+>I provided **Brain Arena.apk** simply install it
 ---
 
-## 💻 Usage
+## 🎯 Future Improvements
 
-Explain how to use the project.
-
-Example:
-
-1. Open the application.
-2. Create an account.
-3. Start using the features.
-
----
-
-## 📋 Prerequisites
-
-- Node.js
-- Git
-- Browser
+- ➗ Division Mode
+- 🎚️ Difficulty Levels
+- 🏅 Global Leaderboard
+- 💾 High Score Saving
+- 🌙 Dark & Light Theme
+- 🎵 Sound Effects
+- 🎶 Background Music
+- ✨ Better Animations
+- 📊 Game Statistics
+- 🌍 Multiplayer Mode
 
 ---
 
@@ -129,58 +137,36 @@ Example:
 
 Contributions are welcome!
 
-1. Fork the repository
-2. Create a new branch
-3. Commit your changes
-4. Push the branch
-5. Open a Pull Request
+1. Fork this repository.
+2. Create your feature branch.
+3. Commit your changes.
+4. Push to your branch.
+5. Open a Pull Request.
 
 ---
 
-## 🐞 Known Issues
+## 📄 License
 
-- Issue 1
-- Issue 2
-
----
-
-## 🔮 Future Improvements
-
-- [ ] Dark Mode
-- [ ] User Authentication
-- [ ] Mobile App
-- [ ] Performance Improvements
+This project is licensed under the **MIT License**.
 
 ---
 
-## 👨‍💻 Author
+## 👨‍💻 Developer
 
-**Your Name**
+**Shivam Prajapati**
 
-- GitHub: https://github.com/USERNAME
-- LinkedIn: https://linkedin.com/in/USERNAME
-- Portfolio: https://YOURWEBSITE.com
+GitHub: **https://github.com/ShivamPrajapati-7**
 
 ---
 
-## 📜 License
+## 🌟 Show Your Support
 
-This project is licensed under the MIT License.
+If you like this project, consider giving it a **⭐ Star** on GitHub.
 
-See the `LICENSE` file for details.
-
----
-
-## ⭐ Support
-
-If you like this project, please consider giving it a ⭐ on GitHub!
+Your support helps the project reach more developers and motivates future improvements.
 
 ---
 
-## 🙏 Acknowledgements
-
-Thanks to:
-
-- Open Source Community
-- Contributors
-- Inspiration from various projects
+<p align="center">
+<b>🧠 Train Your Brain • Improve Your Speed • Beat Your High Score 🚀</b>
+</p>
