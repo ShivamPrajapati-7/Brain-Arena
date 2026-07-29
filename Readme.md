@@ -1,3 +1,4 @@
+![Version](https://img.shields.io/badge/version-1.1-blue)
 # 🧠 Brain Arena
 
 > A fast-paced Android math quiz game built with Kotlin to improve arithmetic skills through timed challenges.
