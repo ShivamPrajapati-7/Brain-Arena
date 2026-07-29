@@ -1,8 +1,10 @@
 package com.shivam_interactive.mathsgame
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.Button
@@ -13,6 +15,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.color.utilities.Score
 import java.util.Locale
 import kotlin.random.Random
 
@@ -27,14 +30,18 @@ class gameactivity : AppCompatActivity() {
     lateinit var answer: EditText
 
     lateinit var okbtn: Button
-    lateinit var nextbtn: Button
+
+    lateinit var H_score: Button
 
     var correctanswer=0
     var lives=3;
+
+    lateinit var sharedpreferance: SharedPreferences
     var scorecount=0;
     lateinit var timer: CountDownTimer
-    private val starttimerinm:Long=60000
+    private val starttimerinm:Long=20000
     var timeinm:Long=starttimerinm
+    //var h_score:Int= 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,13 +58,12 @@ class gameactivity : AppCompatActivity() {
         live=findViewById(R.id.live)
         time=findViewById(R.id.time)
 
-        error=findViewById(R.id.error)
-
         display=findViewById(R.id.display)
         answer=findViewById(R.id.answer)
 
         okbtn=findViewById(R.id.okbtn)
-        nextbtn=findViewById(R.id.nextbtn)
+
+        //H_score=findViewById(R.id.H_score)
 
 
         randomlogic()
@@ -74,12 +80,20 @@ class gameactivity : AppCompatActivity() {
                     pausetimer()
                     scorecount=scorecount+1;
                     score.text="Score : ${scorecount.toString()}"
-                    error.text="Correct answer"
+                    Toast.makeText(this@gameactivity,"Correct answer", Toast.LENGTH_SHORT).show()
+                    resettimer()
+                    randomlogic()
+                    answer.setText("")
+
+            if(live.text.toString()=="0")
+            {
+                showalertDialog()
+            }
                 }
                 else {
                     lives--
                     live.text = "Heart : ${lives.toString()}"
-                    Toast.makeText(this,"You have only ${lives.toString()} Hearts left",Toast.LENGTH_LONG).show()
+                    Toast.makeText(this,"Wrong Answer ${lives} Hearts left",Toast.LENGTH_SHORT).show()
                     if(lives.toInt()==0)
                     {
                         showalertDialog()
@@ -87,17 +101,6 @@ class gameactivity : AppCompatActivity() {
                 }
             }
 
-        }
-        nextbtn.setOnClickListener {
-            pausetimer()
-            resettimer()
-            randomlogic()
-            answer.setText("")
-            error.setText("")
-            if(live.text.toString()=="0")
-            {
-                showalertDialog()
-            }
         }
     }
 
@@ -125,14 +128,34 @@ class gameactivity : AppCompatActivity() {
         alertdialog.create().show()
     }
 
+    fun timesupalertDialog(){
+        var alertdialog= AlertDialog.Builder(this@gameactivity)
+
+        alertdialog.setTitle("Time's Up")
+            .setMessage("Heart Left : ${lives.toString()}")
+            .setCancelable(false)
+            .setPositiveButton("Retry", DialogInterface.OnClickListener{ dialoginterface, Result->
+
+                if(lives==0){
+                    showalertDialog()
+                }
+                else
+                {
+                    resettimer()
+                    randomlogic()
+                    answer.setText("")
+                }
+            })
+
+        alertdialog.create().show()
+    }
+
     fun timelogic(){
         timer =object :CountDownTimer(timeinm,1000) {
             override fun onFinish() {
-                    lives--
+                lives--
                 live.text="Live : ${lives.toString()}"
-                    error.text="Time finish to continue game press next 1 Heart gone"
-
-
+                timesupalertDialog()
                 pausetimer()
                 updatetext()
 
@@ -144,6 +167,10 @@ class gameactivity : AppCompatActivity() {
             }
         }.start()
     }
+
+
+
+
     fun updatetext()
     {
         var remaingtime:Int= (timeinm/1000).toInt()
@@ -156,5 +183,36 @@ class gameactivity : AppCompatActivity() {
         timeinm=starttimerinm
         updatetext()
     }
+
+    /*override fun onPause() {
+        super.onPause()
+        save()
+    }
+
+    fun save()
+    {
+        sharedpreferance=this.getSharedPreferences("SaveData", Context.MODE_PRIVATE)
+        if(h_score!!.toInt()< score.text.toString().toInt())
+        {
+            h_score=score.text.toString().toInt()
+        }
+        val editor=sharedpreferance.edit()
+
+        editor.putInt("Highest Score",h_score)
+
+        editor.apply()
+    }
+
+    fun retrive(){
+        sharedpreferance=this.getSharedPreferences("SaveData",Context.MODE_PRIVATE)
+        H_score.text=sharedpreferance.getInt("Highest Score",0).toString()
+
+        score.setText("Highest Score : ${H_score.text.toString()}")
+
+    }
+    override fun onResume() {
+        super.onResume()
+        retrive()
+    }*/
 
 }

@@ -27,13 +27,12 @@ class subtractActivity : AppCompatActivity() {
     lateinit var answer: EditText
 
     lateinit var okbtn: Button
-    lateinit var nextbtn: Button
 
     var correctanswer=0
     var lives=3;
     var scorecount=0;
     lateinit var timer: CountDownTimer
-    private val starttimerinm:Long=60000
+    private val starttimerinm:Long=20000
     var timeinm:Long=starttimerinm
 
 
@@ -51,13 +50,10 @@ class subtractActivity : AppCompatActivity() {
         live=findViewById(R.id.live)
         time=findViewById(R.id.time)
 
-        error=findViewById(R.id.error)
-
         display=findViewById(R.id.display)
         answer=findViewById(R.id.answer)
 
         okbtn=findViewById(R.id.okbtn)
-        nextbtn=findViewById(R.id.nextbtn)
 
 
         randomlogic()
@@ -71,15 +67,19 @@ class subtractActivity : AppCompatActivity() {
 
                 if(useranswer.toInt()==correctanswer)
                 {
-                    pausetimer()
                     scorecount=scorecount+1;
                     score.text="Score : ${scorecount.toString()}"
-                    error.text="Correct answer"
+                    answer.setText("")
+                    Toast.makeText(this@subtractActivity,"Correct Answer",Toast.LENGTH_SHORT).show()
+                    pausetimer()
+                    resettimer()
+
+                    randomlogic()
                 }
                 else {
                     lives--
                     live.text = "Heart : ${lives.toString()}"
-                    Toast.makeText(this,"You have only ${lives.toString()} Hearts left",Toast.LENGTH_LONG).show()
+                    Toast.makeText(this,"Wrong Answer ${lives} Hearts left",Toast.LENGTH_SHORT).show()
                     if(lives.toInt()==0)
                     {
                         showalertDialog()
@@ -87,17 +87,6 @@ class subtractActivity : AppCompatActivity() {
                 }
             }
 
-        }
-        nextbtn.setOnClickListener {
-            pausetimer()
-            resettimer()
-            randomlogic()
-            answer.setText("")
-            error.setText("")
-            if(live.text.toString()=="0")
-            {
-                showalertDialog()
-            }
         }
     }
 
@@ -125,14 +114,35 @@ class subtractActivity : AppCompatActivity() {
         alertdialog.create().show()
     }
 
+    fun timesupalertDialog(){
+        var alertdialog= AlertDialog.Builder(this@subtractActivity)
+
+        alertdialog.setTitle("Time's Up")
+            .setMessage("Heart Left : ${lives.toString()}")
+            .setCancelable(false)
+            .setPositiveButton("Retry", DialogInterface.OnClickListener{ dialoginterface, Result->
+
+                if(lives==0){
+                    showalertDialog()
+                }
+                else
+                {
+                    resettimer()
+                    randomlogic()
+                    answer.setText("")
+                }
+            })
+
+        alertdialog.create().show()
+    }
+
     fun timelogic(){
         timer =object :CountDownTimer(timeinm,1000) {
             override fun onFinish() {
                 lives--
                 live.text="Live : ${lives.toString()}"
-                error.text="Time finish to continue game press next 1 Heart gone"
 
-
+                timesupalertDialog()
                 pausetimer()
                 updatetext()
 
