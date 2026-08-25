@@ -61,7 +61,7 @@ class multiply : AppCompatActivity() {
             val useranswer=answer.text.toString();
             if(useranswer=="")
             {
-                Toast.makeText(this,"Answer the question or go to Next Question", Toast.LENGTH_LONG).show()
+                Toast.makeText(this,"Please Answer it", Toast.LENGTH_LONG).show()
             }
             else{
 
@@ -72,14 +72,15 @@ class multiply : AppCompatActivity() {
                     resettimer()
                     answer.setText("")
                     scorecount=scorecount+1;
-                    score.text="Score : ${scorecount.toString()}"
+                    score.text=scorecount.toString()
                     Toast.makeText(this@multiply,"Correct Answer",Toast.LENGTH_SHORT).show()
 
                 }
                 else {
                     lives--
-                    live.text = "Heart : ${lives.toString()}"
+                    live.text =lives.toString()
                     Toast.makeText(this,"Wrong Answer ${lives} Hearts left",Toast.LENGTH_SHORT).show()
+                    answer.setText(" ")
                     if(lives.toInt()==0)
                     {
                         showalertDialog()

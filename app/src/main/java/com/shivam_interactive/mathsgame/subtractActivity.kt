@@ -61,14 +61,14 @@ class subtractActivity : AppCompatActivity() {
             val useranswer=answer.text.toString();
             if(useranswer=="")
             {
-                Toast.makeText(this,"Answer the question or go to Next Question", Toast.LENGTH_LONG).show()
+                Toast.makeText(this,"Answer the question", Toast.LENGTH_LONG).show()
             }
             else{
 
                 if(useranswer.toInt()==correctanswer)
                 {
                     scorecount=scorecount+1;
-                    score.text="Score : ${scorecount.toString()}"
+                    score.text=scorecount.toString()
                     answer.setText("")
                     Toast.makeText(this@subtractActivity,"Correct Answer",Toast.LENGTH_SHORT).show()
                     pausetimer()
@@ -78,8 +78,9 @@ class subtractActivity : AppCompatActivity() {
                 }
                 else {
                     lives--
-                    live.text = "Heart : ${lives.toString()}"
+                    live.text = lives.toString()
                     Toast.makeText(this,"Wrong Answer ${lives} Hearts left",Toast.LENGTH_SHORT).show()
+                    answer.setText(" ")
                     if(lives.toInt()==0)
                     {
                         showalertDialog()
