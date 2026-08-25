@@ -5,58 +5,139 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/brainarenabg"
     android:orientation="vertical"
     tools:context=".gameactivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/score"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_weight="1"
-            android:background="@drawable/bg_radius"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="Score : 0"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/live"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="top"
             android:layout_weight="1"
-            android:background="@drawable/bg_radius"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="Heart : 3"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp" />
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/time"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/score" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Score" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/bg_radius"
-            android:gravity="center"
-            android:padding="2dp"
-            android:text="Time : 60"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp" />
+            android:layout_marginRight="20dp"
+            android:layout_height="match_parent">
+
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/lifes"/>
+
+
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Hearts"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/live"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3"/>
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/time"/>
+
+
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Time"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20"/>
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -81,26 +162,25 @@
         android:padding="30dp">
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/display"
-            android:layout_width="300dp"
-            android:layout_height="100dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/bg_radius"
-            android:gravity="center"
-            android:text="TextView"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp" />
+            android:background="@drawable/blur_background"
+            android:padding="30dp"
+            android:textSize="24sp"
 
-        <EditText
-            android:id="@+id/answer"
-            android:layout_width="200sp"
-            android:layout_height="70dp"
-            android:background="@drawable/bg_radius"
-            android:ems="10"
+            android:layout_marginBottom="30dp"
+            android:text="Question"/>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/blur_background"
+            android:padding="10dp"
             android:hint="Answer"
             android:inputType="number"
-            android:padding="20dp"
-            android:textColorHint="#FFFFFF" />
+            android:paddingStart="20dp"
+            android:id="@+id/answer"/>
     </LinearLayout>
 
     <LinearLayout
@@ -110,16 +190,14 @@
         android:orientation="horizontal"
         android:padding="25dp">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/okbtn"
-            android:layout_width="50dp"
-            android:layout_height="70dp"
-            android:layout_weight="1"
-            android:backgroundTint="@color/Btnbg"
-            android:text="OK"
-            android:textColor="#FDFDFD"
-            android:textColorLink="#FFFFFF"
-            android:textSize="24sp" />
+            android:text="Submit"
+            android:textColor="@color/btnbg"
+            app:backgroundTint="@null"
+            android:background="@drawable/btnok" />
 
     </LinearLayout>
 

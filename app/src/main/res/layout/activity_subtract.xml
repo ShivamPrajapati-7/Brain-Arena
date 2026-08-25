@@ -115,7 +115,7 @@
             android:layout_width="50dp"
             android:layout_height="70dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/Btnbg"
+            android:backgroundTint="@color/btnbg"
             android:text="OK"
             android:textColor="#FDFDFD"
             android:textColorLink="#FFFFFF"
@@ -129,7 +129,7 @@
         android:layout_height="70dp"
         android:gravity="center"
         android:text=""
-        android:textColor="@color/Btnbg"
+        android:textColor="@color/btnbg"
         android:textSize="24sp" />
 </LinearLayout>
 
