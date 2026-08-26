@@ -52,6 +52,15 @@ The game helps improve:
 
 
 ---
+## 📷 Screenshots
+
+![Home Screen](./Screensorts/home.png)
+
+![Quiz Screen](./Screensorts/Addition.png)
+
+![Times Up Screen](./Screensorts/lostLife.png)
+
+---
 
 ## 🛠️ Tech Stack
 
