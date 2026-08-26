@@ -4,7 +4,6 @@
 
 
 <p align="center">
-[![Version](https://img.shields.io/badge/Version-v1.0-blue)](https://github.com/ShivamPrajapati-7/Brain-Arena/releases)
   <img src="https://img.shields.io/badge/Platform-Android-green?style=for-the-badge"/>
   <img src="https://img.shields.io/badge/Language-Kotlin-purple?style=for-the-badge"/>
   <img src="https://img.shields.io/badge/Min%20SDK-24-blue?style=for-the-badge"/>
@@ -54,11 +53,11 @@ The game helps improve:
 ---
 ## 📷 Screenshots
 
-![Home Screen](./Screensorts/home.png)
-
-![Quiz Screen](./Screensorts/Addition.png)
-
-![Times Up Screen](./Screensorts/lostLife.png)
+<p align="center">
+  <img src="./Screensorts/home.png" width="250">
+  <img src="./Screensorts/Addition.png" width="250">
+  <img src="./Screensorts/lostLife.png" width="250">
+</p>
 
 ---
 
