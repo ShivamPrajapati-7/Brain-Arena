@@ -7,13 +7,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import kotlin.jvm.java
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var addition: Button
-    lateinit var subtraction: Button
-    lateinit var division: Button
+    private lateinit var addition: Button
+    private lateinit var subtraction: Button
+    private lateinit var multiply: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,28 +23,24 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        addition=findViewById(R.id.Addition)
-        subtraction=findViewById(R.id.Subtraction)
-        division=findViewById(R.id.Division)
 
+        addition = findViewById(R.id.Addition)
+        subtraction = findViewById(R.id.Subtraction)
+        multiply = findViewById(R.id.Multiply)
 
         addition.setOnClickListener {
-
-            var intent= Intent(this@MainActivity, gameactivity::class.java)
+            val intent = Intent(this@MainActivity, GameActivity::class.java)
             startActivity(intent)
-
         }
+
         subtraction.setOnClickListener {
-
-            var intent= Intent(this@MainActivity, subtractActivity::class.java)
+            val intent = Intent(this@MainActivity, SubtractActivity::class.java)
             startActivity(intent)
-
         }
-        division.setOnClickListener {
 
-            var intent= Intent(this@MainActivity, multiply::class.java)
+        multiply.setOnClickListener {
+            val intent = Intent(this@MainActivity, MultiplyActivity::class.java)
             startActivity(intent)
-
         }
     }
 }

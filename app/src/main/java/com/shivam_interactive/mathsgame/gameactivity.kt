@@ -1,13 +1,6 @@
 package com.shivam_interactive.mathsgame
 
 import android.app.AlertDialog
-import android.content.Context
-import android.content.DialogInterface
-import android.content.Intent
-import android.content.SharedPreferences
-import android.graphics.RenderEffect
-import android.graphics.Shader
-import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.Button
@@ -15,40 +8,31 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.google.android.material.color.utilities.Score
 import java.util.Locale
 import kotlin.random.Random
 
-class gameactivity : AppCompatActivity() {
+class GameActivity : AppCompatActivity() {
 
-    lateinit var score: TextView
-    lateinit var live: TextView
-    lateinit var time: TextView
+    private lateinit var score: TextView
+    private lateinit var live: TextView
+    private lateinit var time: TextView
 
-    lateinit var error: TextView
-    lateinit var display: TextView
-    lateinit var answer: EditText
+    private lateinit var display: TextView
+    private lateinit var answer: EditText
 
-    lateinit var okbtn: Button
+    private lateinit var okbtn: Button
 
-    lateinit var H_score: Button
+    private var correctanswer = 0
+    private var lives = 3
+    private var scorecount = 0
 
-    var correctanswer=0
-    var lives=3;
+    private lateinit var timer: CountDownTimer
+    private val starttimerinm: Long = 20000
+    private var timeinm: Long = starttimerinm
 
-    lateinit var sharedpreferance: SharedPreferences
-    var scorecount=0;
-    lateinit var timer: CountDownTimer
-    private val starttimerinm:Long=20000
-    var timeinm:Long=starttimerinm
-    //var h_score:Int= 0
-
-
-    @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -59,167 +43,129 @@ class gameactivity : AppCompatActivity() {
             insets
         }
 
-        score=findViewById(R.id.score)
-        live=findViewById(R.id.live)
-        time=findViewById(R.id.time)
+        score = findViewById(R.id.score)
+        live = findViewById(R.id.live)
+        time = findViewById(R.id.time)
 
-        display=findViewById(R.id.display)
-        answer=findViewById(R.id.answer)
+        display = findViewById(R.id.display)
+        answer = findViewById(R.id.answer)
 
-        okbtn=findViewById(R.id.okbtn)
-
-        //H_score=findViewById(R.id.H_score)
-
-
+        okbtn = findViewById(R.id.okbtn)
 
         randomlogic()
+
         okbtn.setOnClickListener {
-            val useranswer=answer.text.toString();
-            if(useranswer=="")
-            {
-                Toast.makeText(this,"Answer the question or go to Next Question", Toast.LENGTH_LONG).show()
+            val userText = answer.text.toString().trim()
+            if (userText.isEmpty()) {
+                Toast.makeText(this, "Please answer the question", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
-            else{
 
-                if(useranswer.toInt()==correctanswer)
-                {
+            val userAnswerInt = userText.toIntOrNull()
+            if (userAnswerInt == null) {
+                Toast.makeText(this, "Please enter a valid number", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (userAnswerInt == correctanswer) {
+                pausetimer()
+                scorecount++
+                score.text = scorecount.toString()
+                Toast.makeText(this@GameActivity, "Correct answer!", Toast.LENGTH_SHORT).show()
+                resettimer()
+                randomlogic()
+                answer.setText("")
+            } else {
+                lives--
+                live.text = lives.toString()
+                Toast.makeText(this, "Wrong Answer! $lives Hearts left", Toast.LENGTH_SHORT).show()
+                answer.setText("")
+                if (lives <= 0) {
                     pausetimer()
-                    scorecount=scorecount+1;
-                    score.text=scorecount.toString()
-                    Toast.makeText(this@gameactivity,"Correct answer", Toast.LENGTH_SHORT).show()
-                    resettimer()
-                    randomlogic()
-                    answer.setText("")
-
-            if(live.text.toString()=="0")
-            {
-                showalertDialog()
-            }
-                }
-                else {
-                    lives--
-                    live.text = lives.toString()
-                    Toast.makeText(this,"Wrong Answer ${lives} Hearts left",Toast.LENGTH_SHORT).show()
-                    answer.setText(" ")
-                    if(lives.toInt()==0)
-                    {
-                        showalertDialog()
-                    }
+                    showalertDialog()
                 }
             }
-
         }
     }
 
+    private fun randomlogic() {
+        val num1 = Random.nextInt(0, 100)
+        val num2 = Random.nextInt(0, 100)
 
-    fun randomlogic(){
-        val num1= Random.nextInt(0,100)
-        val num2= Random.nextInt(0,100)
-
-        display.text="$num1 + $num2";
-        correctanswer=num1+num2;
+        display.text = "$num1 + $num2"
+        correctanswer = num1 + num2
         timelogic()
     }
-    fun showalertDialog(){
-        var alertdialog= AlertDialog.Builder(this@gameactivity)
 
+    private fun showalertDialog() {
+        val alertdialog = AlertDialog.Builder(this@GameActivity)
         alertdialog.setTitle("Game Over")
-            .setMessage("Score : ${scorecount.toString()}")
-            .setCancelable(true)
-            .setPositiveButton("OK", DialogInterface.OnClickListener{ dialoginterface, Result->
-                var intant= Intent(this@gameactivity, MainActivity::class.java)
-                startActivity(intant)
+            .setMessage("Final Score: $scorecount")
+            .setCancelable(false)
+            .setPositiveButton("OK") { _, _ ->
                 finish()
-            })
-
+            }
         alertdialog.create().show()
     }
 
-    fun timesupalertDialog(){
-        var alertdialog= AlertDialog.Builder(this@gameactivity)
-
+    private fun timesupalertDialog() {
+        val alertdialog = AlertDialog.Builder(this@GameActivity)
         alertdialog.setTitle("Time's Up")
-            .setMessage("Heart Left : ${lives.toString()}")
+            .setMessage("Hearts Left: $lives")
             .setCancelable(false)
-            .setPositiveButton("Retry", DialogInterface.OnClickListener{ dialoginterface, Result->
-
-                if(lives==0){
+            .setPositiveButton("Retry") { _, _ ->
+                if (lives <= 0) {
                     showalertDialog()
-                }
-                else
-                {
+                } else {
                     resettimer()
                     randomlogic()
                     answer.setText("")
                 }
-            })
-
+            }
         alertdialog.create().show()
     }
 
-    fun timelogic(){
-        timer =object :CountDownTimer(timeinm,1000) {
+    private fun timelogic() {
+        if (::timer.isInitialized) {
+            timer.cancel()
+        }
+        timer = object : CountDownTimer(timeinm, 1000) {
             override fun onFinish() {
                 lives--
-                live.text=lives.toString()
-                timesupalertDialog()
-                pausetimer()
+                live.text = lives.toString()
                 updatetext()
-
+                if (lives <= 0) {
+                    showalertDialog()
+                } else {
+                    timesupalertDialog()
+                }
             }
 
             override fun onTick(p0: Long) {
-                timeinm=p0
+                timeinm = p0
                 updatetext()
             }
         }.start()
     }
 
-
-
-
-    fun updatetext()
-    {
-        var remaingtime:Int= (timeinm/1000).toInt()
-        time.text= String.format(Locale.getDefault(),"%02d",remaingtime)
+    private fun updatetext() {
+        val remainingtime: Int = (timeinm / 1000).toInt()
+        time.text = String.format(Locale.getDefault(), "%02d", remainingtime)
     }
-    fun pausetimer(){
-        timer.cancel()
+
+    private fun pausetimer() {
+        if (::timer.isInitialized) {
+            timer.cancel()
+        }
     }
-    fun resettimer(){
-        timeinm=starttimerinm
+
+    private fun resettimer() {
+        timeinm = starttimerinm
         updatetext()
     }
 
-    /*override fun onPause() {
-        super.onPause()
-        save()
+    override fun onDestroy() {
+        super.onDestroy()
+        pausetimer()
     }
-
-    fun save()
-    {
-        sharedpreferance=this.getSharedPreferences("SaveData", Context.MODE_PRIVATE)
-        if(h_score!!.toInt()< score.text.toString().toInt())
-        {
-            h_score=score.text.toString().toInt()
-        }
-        val editor=sharedpreferance.edit()
-
-        editor.putInt("Highest Score",h_score)
-
-        editor.apply()
-    }
-
-    fun retrive(){
-        sharedpreferance=this.getSharedPreferences("SaveData",Context.MODE_PRIVATE)
-        H_score.text=sharedpreferance.getInt("Highest Score",0).toString()
-
-        score.setText("Highest Score : ${H_score.text.toString()}")
-
-    }
-    override fun onResume() {
-        super.onResume()
-        retrive()
-    }*/
-
 }

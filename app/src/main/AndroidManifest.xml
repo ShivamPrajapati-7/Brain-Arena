@@ -22,17 +22,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".gameactivity"
+            android:name=".GameActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".subtractActivity"
+            android:name=".SubtractActivity"
             android:exported="false"
+            android:parentActivityName=".MainActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".multiply"
+            android:name=".MultiplyActivity"
             android:exported="false"
+            android:parentActivityName=".MainActivity"
             android:windowSoftInputMode="adjustResize" />
     </application>
 
